@@ -1,4 +1,4 @@
-# =============================================================================
+﻿# =============================================================================
 # Dockerfile — Moodle 4.1 customizado com extensões PHP obrigatórias
 # Base: php:8.1-apache (imagem oficial PHP com Apache)
 #
@@ -38,6 +38,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     unzip \
     git \
+    # Cliente CLI do PostgreSQL (pg_isready usado no entrypoint)
+    postgresql-client \
     && rm -rf /var/lib/apt/lists/*
 
 # -----------------------------------------------------------------------------
@@ -69,12 +71,17 @@ RUN docker-php-ext-install \
     intl \
     # Driver PDO para PostgreSQL (conexão com o banco de dados)
     pdo_pgsql \
+    # Driver nativo PostgreSQL (exigido pelo Moodle além do PDO)
+    pgsql \
     # Processamento de imagens (thumbnails, avatares de usuários)
     gd \
     # Cache de opcodes PHP (melhora performance de produção)
     opcache \
     # Funções criptográficas modernas (obrigatório no Moodle 4.1+)
     sodium
+
+# Driver nativo PostgreSQL instalado separadamente para garantir presenca em runtime
+RUN docker-php-ext-install pgsql
 
 # TODO: Adicione aqui extensões PHP opcionais necessárias para plugins adicionais.
 # Exemplos de extensões comuns em ambientes Moodle avançados:
@@ -151,4 +158,16 @@ RUN a2enmod rewrite
 # COPY apache-moodle.conf /etc/apache2/sites-available/000-default.conf
 
 # Porta exposta pelo contêiner (mapeada para 8080 no host via docker-compose.yml)
+
+# -----------------------------------------------------------------------------
+# Copia e configura o entrypoint de inicializacao automatica do Moodle.
+# O script verifica se o Moodle ja esta instalado (config.php existe)
+# antes de rodar o instalador nao-interativo. Sem isso, php:8.1-apache
+# nao realiza a instalacao automaticamente ao receber variaveis MOODLE_*.
+# -----------------------------------------------------------------------------
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
 EXPOSE 80

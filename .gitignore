@@ -72,6 +72,8 @@ web_modules/
 !.env.example
 
 # Terraform — arquivos sensíveis e de estado
+# Diretorio de plugins e cache do Terraform (gerado pelo terraform init)
+.terraform/
 *.tfvars
 terraform.tfstate
 terraform.tfstate.backup

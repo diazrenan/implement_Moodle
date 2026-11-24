@@ -1,0 +1,17 @@
+LICENSE
+README.md
+pyproject.toml
+moodle_docker_aws_challenge.egg-info/PKG-INFO
+moodle_docker_aws_challenge.egg-info/SOURCES.txt
+moodle_docker_aws_challenge.egg-info/dependency_links.txt
+moodle_docker_aws_challenge.egg-info/requires.txt
+moodle_docker_aws_challenge.egg-info/top_level.txt
+tests/test_architecture_template_sections.py
+tests/test_compose_no_hardcoded_creds.py
+tests/test_dockerfile_extensions.py
+tests/test_docs_exist.py
+tests/test_gitignore_patterns.py
+tests/test_health_check.py
+tests/test_terraform_module_structure.py
+tests/test_todo_comments.py
+tests/test_workflow_step_comments.py

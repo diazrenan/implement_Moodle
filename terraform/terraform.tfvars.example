@@ -1,0 +1,28 @@
+# =============================================================================
+# terraform.tfvars.example — Exemplo de variáveis para o terraform apply
+# Ref: Requisito 3.3
+# INSTRUÇÕES: Copie este arquivo para terraform.tfvars e preencha os valores.
+#   cp terraform.tfvars.example terraform.tfvars
+# O arquivo terraform.tfvars está no .gitignore e não deve ser versionado.
+# =============================================================================
+
+# TODO: Preencha os valores abaixo e renomeie para terraform.tfvars
+
+# TODO: Nome do projeto (usado como prefixo nos nomes dos recursos AWS)
+project_name = ""
+
+# TODO: Chave pública SSH no formato OpenSSH (saída de: cat ~/.ssh/id_rsa.pub)
+ec2_public_key = ""
+
+# TODO: CIDR autorizado para SSH — restrinja ao seu IP (/32) em vez de 0.0.0.0/0
+# Exemplo: ssh_allowed_cidr = "203.0.113.42/32"
+ssh_allowed_cidr = ""
+
+# TODO: Usuário master do banco de dados RDS PostgreSQL
+db_username = ""
+
+# TODO: Senha forte para o banco de dados RDS (mínimo 8 caracteres)
+db_password = ""
+
+# TODO: Senha para o administrador do Moodle (mínimo 8 caracteres)
+moodle_admin_password = ""

@@ -1,0 +1,5 @@
+
+[test]
+pytest>=7.0
+hypothesis>=6.0
+pyyaml>=6.0

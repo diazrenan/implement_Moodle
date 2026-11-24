@@ -1,0 +1,21 @@
+# =============================================================================
+# backend.tf.example — Exemplo de backend remoto S3 + DynamoDB
+# Ref: Requisito 2.1 (boas praticas de state remoto)
+#
+# INSTRUCOES: Para usar backend remoto, copie para backend.tf e preencha.
+#   cp backend.tf.example backend.tf
+# ATENCAO: backend.tf contem dados sensiveis — nao versione (ja esta no .gitignore).
+# =============================================================================
+
+# TODO: Preencha bucket, key, region e dynamodb_table com seus valores reais
+# antes de executar terraform init com este backend.
+
+# terraform {
+#   backend "s3" {
+#     bucket         = "meu-bucket-terraform-state"
+#     key            = "moodle-challenge/terraform.tfstate"
+#     region         = "us-east-1"
+#     dynamodb_table = "meu-terraform-lock"
+#     encrypt        = true
+#   }
+# }
